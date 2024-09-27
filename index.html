@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Payoo Home</title>
+    <!-- favicon -->
+    <link rel="icon" href="./images/payoo.png" type="image/x-icon" />
+    <!-- font import -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@100..900&display=swap" rel="stylesheet">
+    <!-- daisyui import -->
+    <link href="https://cdn.jsdelivr.net/npm/daisyui@4.12.10/dist/full.min.css" rel="stylesheet" type="text/css" />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- tailwind config -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'card-gray': 'rgba(17, 17, 17, 0.05)',
+                        'text-gray': 'rgba(17, 17, 17, 0.7)',
+                        'text-primary': 'rgb(17,17,17)',
+                    }
+                }
+            }
+        }
+    </script>
+    <!-- custom css -->
+    <style>
+        .outfit {
+            font-family: "Outfit", sans-serif;
+            font-style: normal;
+        }
+
+        /* Chrome, Safari, Edge, Opera */
+        input::-webkit-outer-spin-button,
+        input::-webkit-inner-spin-button {
+            -webkit-appearance: none;
+            margin: 0;
+        }
+    </style>
+</head>
+
+<body class="outfit">
+    <main class="flex justify-center my-6 flex-row min-h-fit">
+        <!-- login section -->
+        <div class="hero bg-gray-100 max-w-md border-2 py-5 pb-10 rounded-2xl border-gray-700">
+            <div class="hero-content flex-col">
+                <div class="gap-2 flex flex-col items-center">
+                    <img src="./images/payoo.png" class="w-20 " alt="">
+                    <h3 class="text-3xl font-bold">Payoo Login</h3>
+                </div>
+                <div class="card bg-base-100 w-full max-w-sm shrink-0 shadow-xl">
+                    <form class="card-body">
+                        <div class="form-control">
+                            <label class="label">
+                                <span class="label-text">Enter Mobile Number</span>
+                            </label>
+                            <input id="mobile-input" type="number" placeholder="Mobile Number (10 digit)"
+                                class="input input-bordered" autocomplete="on" required />
+                        </div>
+                        <div class="form-control">
+                            <label class="label">
+                                <span class="label-text">Enter Pin</span>
+                            </label>
+                            <input id="pin-input" type="password" placeholder="Pin (4 digit)" class="input input-bordered"
+                                autocomplete="on" required />
+                            <label class="label">
+                                <a href="forget.html" class="label-text-alt link link-hover">Forgot password?</a>
+                            </label>
+                        </div>
+                        <div class="form-control mt-2">
+                            <button id="login-btn" class="btn btn-primary">Login</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <!-- login end -->
+    </main>
+
+    <!-- js -->
+    <script src="./js/login.js"></script>
+</body>
+
+</html>

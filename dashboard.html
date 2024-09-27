@@ -1,0 +1,357 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Payoo Dashboard</title>
+    <!-- favicon -->
+    <link rel="icon" href="./images/payoo.png" type="image/x-icon" />
+    <!-- font import -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@100..900&display=swap" rel="stylesheet">
+    <!-- daisyui import -->
+    <link href="https://cdn.jsdelivr.net/npm/daisyui@4.12.10/dist/full.min.css" rel="stylesheet" type="text/css" />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- tailwind config -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'card-gray': 'rgba(17, 17, 17, 0.05)',
+                        'text-gray': 'rgba(17, 17, 17, 0.7)',
+                        'text-primary': 'rgb(17,17,17)'
+                    }
+                }
+            }
+        }
+    </script>
+    <!-- custom css -->
+    <style>
+        .outfit {
+            font-family: "Outfit", sans-serif;
+            font-style: normal;
+        }
+
+        /* Chrome, Safari, Edge, Opera */
+        input::-webkit-outer-spin-button,
+        input::-webkit-inner-spin-button {
+            -webkit-appearance: none;
+            margin: 0;
+        }
+
+
+        .clicked {
+            border-color: #3490dc;
+        }
+    </style>
+</head>
+
+<body class="outfit">
+    <main class="flex justify-center min-h-fit">
+        <!-- dashboard design -->
+        <div class="py-6 my-6 border-2 max-w-md rounded-2xl border-gray-700">
+            <!-- navbar -->
+            <div class="flex justify-between items-center shadow px-5 py-4">
+                <div class="flex gap-2 items-center">
+                    <img src="./images/payoo.png" class="w-12" alt="">
+                    <div>
+                        <h2 class="text-lg font-bold text-text-primary">$<span id="available-balance">4500</span></h2>
+                        <p class="text-sm text-text-gray">Available Balance</p>
+                    </div>
+                </div>
+                <div>
+                    <button class="btn btn-outline btn-primary" onclick={handleLogout()}>Log out</button>
+                </div>
+            </div>
+            <!-- navbar end -->
+
+            <!-- dashboard content -->
+            <div class="px-5 pt-4">
+                <h1 class="text-2xl font-bold text-text-primary">🔥Welcome to Payoo!</h1>
+                <p class="text-text-gray mt-2">Enjoy easy and convenient financial services with us. Cashout
+                    charge is low and </p>
+            </div>
+            <!-- dashboard content end  -->
+
+            <!-- dashboard icon -->
+            <div class="px-5 pt-4">
+                <div class="grid grid-cols-3 gap-3 text-center">
+                    <div
+                        class="dashboard-icon flex flex-col gap-2 items-center border-2 rounded-lg py-3 hover:border-primary hover:shadow-xl">
+                        <img src="./images/add-money.png" class="w-6" alt="">
+                        <h2 class="text-text-gray text-sm">Add Money</h2>
+                    </div>
+                    <div
+                        class="dashboard-icon flex flex-col gap-2 items-center border-2 rounded-lg p-3 hover:border-primary hover:shadow-xl">
+                        <img src="./images/cash-out.png" class="w-6" alt="">
+                        <h2 class="text-text-gray text-sm">Cashout</h2>
+                    </div>
+                    <div
+                        class="dashboard-icon flex flex-col gap-2 items-center border-2 rounded-lg p-3 hover:border-primary hover:shadow-xl">
+                        <img src="./images/transfer-money.png" class="w-6" alt="">
+                        <h2 class="text-text-gray text-sm">Cash Transfer</h2>
+                    </div>
+                    <div
+                        class="dashboard-icon flex flex-col gap-2 items-center border-2 rounded-lg p-3 hover:border-primary hover:shadow-xl">
+                        <img src="./images/get-bonus.png" class="w-6" alt="">
+                        <h2 class="text-text-gray text-sm">Get Bonus</h2>
+                    </div>
+                    <div
+                        class="dashboard-icon flex flex-col gap-2 items-center border-2 rounded-lg p-3 hover:border-primary hover:shadow-xl">
+                        <img src="./images/pay-bill.png" class="w-6" alt="">
+                        <h2 class="text-text-gray text-sm">Pay Bill</h2>
+                    </div>
+                    <div
+                        class="dashboard-icon flex flex-col gap-2 items-center border-2 rounded-lg p-3 hover:border-primary hover:shadow-xl">
+                        <img src="./images/transaction.png" class="w-6" alt="">
+                        <h2 class="text-text-gray text-sm">Transactions</h2>
+                    </div>
+                </div>
+            </div>
+
+            <!-- add money section -->
+            <div id="add-money-section" class="px-5 hidden">
+                <!-- title -->
+                <h2 class="font-semibold text-xl text-text-primary mt-5">Add Money</h2>
+
+                <div class=" flex-col">
+                    <div class="card bg-base-100 w-full  shadow-xl">
+                        <form class="card-body">
+                            <div class="form-control">
+                                <label class="label">
+                                    <span class="label-text">Select A Bank</span>
+                                </label>
+                                <input autocomplete="on" type="text" id="add-bank-name" placeholder="Enter A Bank Name"
+                                    class="input input-bordered" required />
+                            </div>
+                            <div class="form-control">
+                                <label class="label">
+                                    <span class="label-text">Bank Account Number</span>
+                                </label>
+                                <input autocomplete="on" type="number" id="add-account-number" placeholder="Enter Account Number (10 digit)"
+                                    class="input input-bordered" required />
+                            </div>
+                            <div class="form-control">
+                                <label class="label">
+                                    <span class="label-text">Ammount To Add</span>
+                                </label>
+                                <input autocomplete="on" type="number" id="add-ammount" placeholder="Enter An Ammount"
+                                    class="input input-bordered" required />
+                            </div>
+                            <div class="form-control">
+                                <label class="label">
+                                    <span class="label-text">Pin</span>
+                                </label>
+                                <input autocomplete="on" type="password" id="add-pin" placeholder="Enter Pin (4 digit)" class="input input-bordered"
+                                    required />
+                            </div>
+                            <div class="form-control mt-3">
+                                <button id="add-btn" class="btn btn-primary">Add Money</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+
+            <!-- cashout section -->
+            <div id="cashout-section"" class=" px-5 hidden">
+                <!-- title -->
+                <h2 class="font-semibold text-xl text-text-primary mt-5">Cash Out</h2>
+
+                <div class=" flex-col">
+                    <div class="card bg-base-100 w-full  shadow-xl">
+                        <form class="card-body">
+                            <div class="form-control">
+                                <label class="label">
+                                    <span class="label-text">Agent Number</span>
+                                </label>
+                                <input id="cashout-agent" autocomplete="on" type="text" placeholder="Enter Agent Number (8 digit)"
+                                    class="input input-bordered" required />
+                            </div>
+                            <div class="form-control">
+                                <label class="label">
+                                    <span class="label-text">Ammount</span>
+                                </label>
+                                <input id="cashout-ammount" autocomplete="on" type="number" placeholder="Enter An Ammount"
+                                    class="input input-bordered" required />
+                            </div>
+                            <div class="form-control">
+                                <label class="label">
+                                    <span class="label-text">Pin</span>
+                                </label>
+                                <input id="cashout-pin" autocomplete="on" type="password" placeholder="Enter Pin (4 digit)"
+                                    class="input input-bordered" required />
+                            </div>
+                            <div class="form-control mt-3">
+                                <button id="cashout-btn" class="btn btn-primary">Withdraw Money</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Cash Tranfer -->
+            <div id="cash-transfer-section" class="px-5 hidden">
+                <!-- title -->
+                <h2 class="font-semibold text-xl text-text-primary mt-5">Cash Transfer</h2>
+
+                <div class=" flex-col">
+                    <div class="card bg-base-100 w-full  shadow-xl">
+                        <form class="card-body">
+                            <div class="form-control">
+                                <label class="label">
+                                    <span class="label-text">User Account Number</span>
+                                </label>
+                                <input id="ct-account-num" autocomplete="on" type="text" placeholder="Enter Account number (10 digit)"
+                                    class="input input-bordered" required />
+                            </div>
+                            <div class="form-control">
+                                <label class="label">
+                                    <span class="label-text">Ammount</span>
+                                </label>
+                                <input id="ct-ammount" autocomplete="on" type="number" placeholder="Enter An Ammount"
+                                    class="input input-bordered" required />
+                            </div>
+                            <div class="form-control">
+                                <label class="label">
+                                    <span class="label-text">Pin</span>
+                                </label>
+                                <input id="ct-pin" autocomplete="on" type="password" placeholder="Enter Pin (4 digit)" class="input input-bordered"
+                                    required />
+                            </div>
+                            <div class="form-control mt-3">
+                                <button id="ct-btn" class="btn btn-primary">Withdraw Money</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Get Bonus -->
+            <div id="get-bonus-section" class="px-5 hidden">
+                <!-- title -->
+                <h2 class="font-semibold text-xl text-text-primary mt-5">Get Bonus</h2>
+
+                <div class="my-4 space-y-3">
+                    <div class="card bg-green-200 px-4 py-2 rounded-lg">
+                        <div class="flex justify-between items-center">
+                            <div class="flex gap-4 items-center">
+                                <img src="./images/coin.png" class="w-8" alt="">
+                                <h2 class="text-text-primary text-md font-semibold">Bonus Coupon
+                                    <span class="text-primary">PAYOO200</span>
+                                </h2>
+                            </div>
+                            <div>
+                                <h2 class="text-text-primary font-semibold">+$<span>200</span></h2>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card bg-green-200 px-4 py-2 rounded-lg">
+                        <div class="flex justify-between items-center">
+                            <div class="flex gap-4 items-center">
+                                <img src="./images/coin.png" class="w-8" alt="">
+                                <h2 class="text-text-primary text-md font-semibold">Bonus Coupon
+                                    <span class="text-primary">PAYOO500</span>
+                                </h2>
+                            </div>
+                            <div>
+                                <h2 class="text-text-primary font-semibold">+$<span>500</span></h2>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class=" flex-col">
+                    <div class="card bg-base-100 w-full  shadow-xl">
+                        <form class="card-body">
+                            <div class="form-control">
+                                <label class="label">
+                                    <span class="label-text">Bonus Coupon</span>
+                                </label>
+                                <input autocomplete="on" type="text" id="bonus-input" placeholder="Enter Bonus Coupon"
+                                    class="input input-bordered" required />
+                            </div>
+
+                            <div class="form-control mt-3">
+                                <button id="bonus-btn" class="btn btn-primary">Get Bonus</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Pay Bill -->
+            <div id="pay-bill-section" class="px-5 hidden">
+                <!-- title -->
+                <h2 class="font-semibold text-xl text-text-primary mt-5">Pay Bill</h2>
+
+                <div class="flex-col">
+                    <div class="card bg-base-100 w-full shadow-xl">
+                        <form class="card-body">
+                            <div class="form-control">
+                                <label class="label">
+                                    <span class="label-text">Select A Bank</span>
+                                </label>
+                                <input autocomplete="on" type="text" id="pb-bank-name" placeholder="Enter A Bank Name"
+                                    class="input input-bordered" required />
+                            </div>
+                            <div class="form-control">
+                                <label class="label">
+                                    <span class="label-text">Biller Account Number</span>
+                                </label>
+                                <input autocomplete="on" type="number" id="pb-account-num" placeholder="Enter Account number (10 digit)"
+                                    class="input input-bordered" required />
+                            </div>
+                            <div class="form-control">
+                                <label class="label">
+                                    <span class="label-text">Amount To Pay</span>
+                                </label>
+                                <input autocomplete="on" type="number" id="pb-amount" placeholder="Enter An Ammount"
+                                    class="input input-bordered" required />
+                            </div>
+                            <div class="form-control">
+                                <label class="label">
+                                    <span class="label-text">Pin</span>
+                                </label>
+                                <input autocomplete="on" type="password" id="pb-pin" placeholder="Enter Pin (4 digit)" class="input input-bordered"
+                                    required />
+                            </div>
+                            <div class="form-control mt-3">
+                                <button type="button" id="pay-bill-btn" class="btn btn-primary">Pay Now</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <!-- transaction history -->
+
+            <!-- Transaction History Section -->
+            <div id="transaction-history-section" class="">
+                <!-- title -->
+                <div class="px-5 mt-5 flex justify-between items-center">
+                    <h2 class="font-semibold text-xl text-text-primary">Transaction History</h2>
+                    <p class="text-sm px-3 py-1 border rounded-full">See All</p>
+                </div>
+
+                <!-- transaction card -->
+                <div id="transaction-history" class="px-5 space-y-2">
+                    <!-- Existing transactions will be here -->
+
+                </div>
+            </div>
+        </div>
+        <!-- dashboard design end-->
+
+    </main>
+
+
+    <!-- js -->
+    <script src="./js/login.js"></script>
+    <script src="./js/scripts.js"></script>
+
+</body>
+
+</html>

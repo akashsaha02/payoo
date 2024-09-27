@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Payoo Home</title>
+    <!-- favicon -->
+    <link rel="icon" href="./images/payoo.png" type="image/x-icon" />
+    <!-- font import -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@100..900&display=swap" rel="stylesheet">
+    <!-- daisyui import -->
+    <link href="https://cdn.jsdelivr.net/npm/daisyui@4.12.10/dist/full.min.css" rel="stylesheet" type="text/css" />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- tailwind config -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'card-gray': 'rgba(17, 17, 17, 0.05)',
+                        'text-gray': 'rgba(17, 17, 17, 0.7)',
+                        'text-primary': 'rgb(17,17,17)',
+                    }
+                }
+            }
+        }
+    </script>
+    <!-- custom css -->
+    <style>
+        .outfit {
+            font-family: "Outfit", sans-serif;
+            font-style: normal;
+        }
+
+        /* Chrome, Safari, Edge, Opera */
+        input::-webkit-outer-spin-button,
+        input::-webkit-inner-spin-button {
+            -webkit-appearance: none;
+            margin: 0;
+        }
+    </style>
+</head>
+
+<body class="outfit">
+    <main class="flex justify-center my-6 flex-row min-h-fit">
+        <div class="max-w-md hero border-2 py-5 pb-10 rounded-2xl border-gray-700">
+            
+            <div class="w-full px-5">
+                <h2 class="text-center text-3xl font-semibold my-5">Thank you for forgetting</h2>
+                <p class="text-center mb-6 text-xl">
+                    Byee😁👍
+                </p>
+                <a href="./index.html" class="text-white">
+                    <button class="btn btn-primary btn-outline w-full">
+                        Home
+                    </button>
+                </a>
+            </div>
+        </div>
+
+    </main>
+</body>
